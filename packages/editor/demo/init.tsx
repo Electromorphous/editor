@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createStore as createReduxStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Button, createTheme } from '@material-ui/core';
+// import { Button, createTheme } from '@material-ui/core';
 import { toHTML, toMarkdown, toTex, ReferenceKind, process, toText } from '@curvenote/schema';
 import { Sidenote, AnchorBase } from 'sidenotes';
 import { Fragment } from 'prosemirror-model';
@@ -65,7 +65,7 @@ export function DemoEditor({ content, store = createStore() }: { content: string
   useEffect(() => {
     // TODO: handle contents update
     if (reduxStore) return;
-    const theme = createTheme({});
+    // const theme = createTheme({});
     const newComment = () => {
       store?.dispatch(actions.addCommentToSelectedView('sidenote1'));
     };
@@ -93,7 +93,7 @@ export function DemoEditor({ content, store = createStore() }: { content: string
       getDocId() {
         return docId;
       },
-      theme,
+      // theme,
       citationPrompt: async () => [
         {
           key: 'simpeg2015',
@@ -178,13 +178,15 @@ export function DemoEditor({ content, store = createStore() }: { content: string
             </div>
           </AnchorBase>
           {/* <Editor stateKey={stateKey} viewId="two" /> */}
-          <div className="sidenotes">
-            <Sidenote sidenote="sidenote1" base="anchor">
-              <div style={{ width: 280, height: 100, backgroundColor: 'green' }} />
-            </Sidenote>
-            <Sidenote sidenote="sidenote2" base="anchor">
-              <div style={{ width: 280, height: 100, backgroundColor: 'red' }} />
-            </Sidenote>
+          <div style={{ border: '2px solid red' }}>
+            <div className="sidenotes">
+              <Sidenote sidenote="sidenote1" base="anchor">
+                <div style={{ width: 280, height: 100, backgroundColor: 'green' }} />
+              </Sidenote>
+              <Sidenote sidenote="sidenote2" base="anchor">
+                <div style={{ width: 280, height: 100, backgroundColor: 'red' }} />
+              </Sidenote>
+            </div>
           </div>
         </article>
         <div className="centered">
@@ -193,12 +195,12 @@ export function DemoEditor({ content, store = createStore() }: { content: string
             <a href="https://curvenote.com"> curvenote.com </a>
             for full demo.
           </p>
-          <Button onClick={newCommentFn}>Comment</Button>
-          <Button onClick={removeCommentFn}>Remove</Button>
+          <button onClick={newCommentFn}>Comment</button>
+          <button onClick={removeCommentFn}>Remove</button>
         </div>
-        <Suggestions>
+        {/* <Suggestions>
           <SuggestionSwitch />
-        </Suggestions>
+        </Suggestions> */}
         <Attributes />
       </React.StrictMode>
     </Provider>

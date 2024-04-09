@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Grid } from '@material-ui/core';
+// import { makeStyles, createStyles, Grid } from '@material-ui/core';
 import { findParentNode } from '@curvenote/prosemirror-utils';
 import { Node } from 'prosemirror-model';
 import { nodeNames } from '@curvenote/schema';
@@ -11,22 +11,22 @@ import { Dispatch, State } from '../../store';
 import { ActionProps } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: 'fit-content',
-      fontSize: 20,
-      flexWrap: 'nowrap',
-    },
-    popover: {
-      overflow: 'visible',
-    },
-  }),
-);
+// const useStyles = makeStyles(() =>
+// createStyles({
+//     root: {
+//       width: 'fit-content',
+//       fontSize: 20,
+//       flexWrap: 'nowrap',
+//     },
+//     popover: {
+//       overflow: 'visible',
+//     },
+//   }),
+// );
 
 function CalloutActions(props: ActionProps) {
   const { stateId, viewId } = props;
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
 
   const selection = useSelector((state: State) => getEditorState(state, stateId)?.state?.selection);
@@ -43,7 +43,7 @@ function CalloutActions(props: ActionProps) {
 
   const { kind } = node.attrs;
   return (
-    <Grid container alignItems="center" justifyContent="center" className={classes.root}>
+    <div className="items-center justify-center w-fit text-xl flex-nowrap">
       <MenuIcon kind="info" active={kind === 'info'} onClick={onKind('info')} />
       <MenuIcon kind="success" active={kind === 'success'} onClick={onKind('success')} />
       <MenuIcon kind="active" active={kind === 'active'} onClick={onKind('active')} />
@@ -53,7 +53,7 @@ function CalloutActions(props: ActionProps) {
       <MenuIcon kind="lift" onClick={onLift} />
       <MenuIcon kind="divider" />
       <MenuIcon kind="remove" onClick={onDelete} dangerous />
-    </Grid>
+    </div>
   );
 }
 

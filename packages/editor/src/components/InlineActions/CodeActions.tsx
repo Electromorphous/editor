@@ -1,13 +1,20 @@
 import React from 'react';
+// import {
+//   FormControl,
+//   Select as MuiSelect,
+//   MenuItem,
+//   styled,
+//   makeStyles,
+//   createStyles,
+//   Grid,
+// } from '@material-ui/core';
 import {
-  FormControl,
-  Select as MuiSelect,
-  MenuItem,
-  styled,
-  makeStyles,
-  createStyles,
-  Grid,
-} from '@material-ui/core';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { findParentNode, replaceParentNodeOfType } from '@curvenote/prosemirror-utils';
 import { Node, NodeType } from 'prosemirror-model';
 import { CaptionKind, nodeNames, Nodes } from '@curvenote/schema';
@@ -27,34 +34,34 @@ import { Dispatch, State } from '../../store';
 import { ActionProps, getFigure } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: 'fit-content',
-      paddingLeft: '0.5rem',
-      fontSize: 20,
-      flexWrap: 'nowrap',
-    },
-    menulist: {
-      maxHeight: '15rem',
-    },
-    dropdownContainer: {
-      width: 100,
-    },
-    popover: {
-      overflow: 'visible',
-    },
-  }),
-);
+// const useStyles = makeStyles(() =>
+//   createStyles({
+//     root: {
+//       width: 'fit-content',
+//       paddingLeft: '0.5rem',
+//       fontSize: 20,
+//       flexWrap: 'nowrap',
+//     },
+//     menulist: {
+//       maxHeight: '15rem',
+//     },
+//     dropdownContainer: {
+//       width: 100,
+//     },
+//     popover: {
+//       overflow: 'visible',
+//     },
+//   }),
+// );
 
-const Select = styled(MuiSelect)(() => ({
-  root: {
-    zIndex: 1302,
-  },
-  '& .MuiSelect-select': {
-    padding: 2,
-  },
-})) as any;
+// const Select = styled(MuiSelect)(() => ({
+//   root: {
+//     zIndex: 1302,
+//   },
+//   '& .MuiSelect-select': {
+//     padding: 2,
+//   },
+// })) as any;
 
 function LanguageSeletionDropdown({
   value,
@@ -63,35 +70,26 @@ function LanguageSeletionDropdown({
   onChanged: (lang: string) => void;
   value: LanguageNames;
 }) {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
-    <FormControl fullWidth>
-      <Select
-        disableUnderline
-        onChange={(e: any) => {
-          onChanged(e.target.value as LanguageNames);
-        }}
-        value={value || SUPPORTED_LANGUAGES[0].name}
-        MenuProps={{
-          className: 'above-modals',
-          MenuListProps: {
-            className: classes.menulist,
-          },
-        }}
-      >
+    <Select defaultValue={SUPPORTED_LANGUAGES[0].name}>
+      <SelectTrigger>
+        <SelectValue placeholder="Select language" />
+      </SelectTrigger>
+      <SelectContent>
         {SUPPORTED_LANGUAGES.map(({ name, label }) => (
-          <MenuItem key={name} value={name}>
+          <SelectItem key={name} value={name} onClick={() => onChanged(name)}>
             {label}
-          </MenuItem>
+          </SelectItem>
         ))}
-      </Select>
-    </FormControl>
+      </SelectContent>
+    </Select>
   );
 }
 
 function CodeActions(props: ActionProps) {
   const { stateId, viewId } = props;
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
   const editorState = useSelector((state: State) => getEditorState(state, stateId)?.state);
   const { figure, figcaption } = getFigure(editorState);
@@ -155,8 +153,8 @@ function CodeActions(props: ActionProps) {
   const hasFigure = !!editorState.schema.nodes.figure;
 
   return (
-    <Grid container alignItems="center" justifyContent="center" className={classes.root}>
-      <div className={classes.dropdownContainer}>
+    <div className="flex justify-center items-center w-fit pl-2 text-xl flex-nowrap ">
+      <div className="w-24">
         <LanguageSeletionDropdown
           value={node.attrs.language}
           onChanged={(language) => {
@@ -190,7 +188,7 @@ function CodeActions(props: ActionProps) {
       )}
       <MenuIcon kind="divider" />
       <MenuIcon kind="remove" onClick={onDelete} dangerous />
-    </Grid>
+    </div>
   );
 }
 

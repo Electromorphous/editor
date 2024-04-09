@@ -1,6 +1,6 @@
 import runtime from '@curvenote/runtime';
 import thunkMiddleware from 'redux-thunk';
-import { middleware } from '../src';
+import { middleware } from '..';
 
 export default [
   thunkMiddleware,

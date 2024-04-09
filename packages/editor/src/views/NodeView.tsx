@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Node } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
-import { ThemeProvider } from '@material-ui/core';
+// import { ThemeProvider } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { isEditable } from '../prosemirror/plugins/editable';
 import { opts, ref } from '../connect';
@@ -79,21 +79,21 @@ export class ReactWrapper {
     if (options.className) this.dom.classList.add(options.className);
 
     render(
-      <ThemeProvider theme={opts.theme}>
-        <Provider store={ref.store()}>
-          <ClassWrapper
-            {...{
-              node,
-              view,
-              getPos,
-              Child: NodeView,
-            }}
-            ref={(r) => {
-              this.editor = r;
-            }}
-          />
-        </Provider>
-      </ThemeProvider>,
+      // <ThemeProvider theme={opts.theme}>
+      <Provider store={ref.store()}>
+        <ClassWrapper
+          {...{
+            node,
+            view,
+            getPos,
+            Child: NodeView,
+          }}
+          ref={(r) => {
+            this.editor = r;
+          }}
+        />
+      </Provider>,
+      // </ThemeProvider>,
       this.dom,
       async () => {
         const edit = isEditable(this.view.state);

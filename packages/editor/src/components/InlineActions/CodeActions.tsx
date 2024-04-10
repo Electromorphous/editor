@@ -14,13 +14,15 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '../../shadcdn/components/ui/select';
 import { findParentNode, replaceParentNodeOfType } from '@curvenote/prosemirror-utils';
-import { Node, NodeType } from 'prosemirror-model';
-import { CaptionKind, nodeNames, Nodes } from '@curvenote/schema';
+import type { Node, NodeType } from 'prosemirror-model';
+import type { Nodes } from '@curvenote/schema';
+import { CaptionKind, nodeNames } from '@curvenote/schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { NodeSelection, TextSelection } from 'prosemirror-state';
-import { LanguageNames, SUPPORTED_LANGUAGES } from '../../views/types';
+import type { LanguageNames } from '../../views/types';
+import { SUPPORTED_LANGUAGES } from '../../views/types';
 import MenuIcon from '../Menu/Icon';
 import {
   applyProsemirrorTransaction,
@@ -30,8 +32,9 @@ import {
 } from '../../store/actions';
 import { updateNodeAttrs } from '../../store/actions/editor';
 import { getEditorState } from '../../store/state/selectors';
-import { Dispatch, State } from '../../store';
-import { ActionProps, getFigure } from './utils';
+import type { Dispatch, State } from '../../store';
+import type { ActionProps } from './utils';
+import { getFigure } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
 
 // const useStyles = makeStyles(() =>

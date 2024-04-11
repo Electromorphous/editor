@@ -12,7 +12,7 @@ import isEqual from 'lodash.isequal';
 // } from '@material-ui/core';
 // import { Popover } from 'shadcn/components/ui/popover';
 import { schemas } from '@curvenote/schema';
-import { State, Dispatch } from '../../store/types';
+import type { State, Dispatch } from '../../store/types';
 import { closeAttributeEditor, updateNodeAttrs } from '../../store/actions';
 import {
   getEditorUI,

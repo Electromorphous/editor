@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../shadcdn/components/ui/select';
+} from '../../shadcn/components/ui/select';
 import { findParentNode, replaceParentNodeOfType } from '@curvenote/prosemirror-utils';
 import type { Node, NodeType } from 'prosemirror-model';
 import type { Nodes } from '@curvenote/schema';

@@ -1,9 +1,9 @@
 import React from 'react';
-import { makeStyles, createStyles, Grid } from '@material-ui/core';
-import { Node } from 'prosemirror-model';
+import type { Node } from 'prosemirror-model';
 import { findChildrenByType, findParentNode } from '@curvenote/prosemirror-utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { nodeNames, Nodes, types, CaptionKind, findChildrenWithName } from '@curvenote/schema';
+import type { Nodes, types } from '@curvenote/schema';
+import { nodeNames, CaptionKind, findChildrenWithName } from '@curvenote/schema';
 import { NodeSelection, TextSelection } from 'prosemirror-state';
 import MenuIcon from '../Menu/Icon';
 import {
@@ -14,20 +14,10 @@ import {
   createFigureCaption,
 } from '../../store/actions';
 import SelectWidth from './SelectWidth';
-import { ActionProps } from './utils';
-import { AppThunk, Dispatch, State } from '../../store';
+import type { ActionProps } from './utils';
+import type { AppThunk, Dispatch, State } from '../../store';
 import { getEditorState } from '../../store/selectors';
 import { getNodeFromSelection } from '../../store/ui/utils';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: 'fit-content',
-      fontSize: 20,
-      flexWrap: 'nowrap',
-    },
-  }),
-);
 
 type Props = ActionProps;
 
@@ -82,7 +72,6 @@ function toggleCaption(stateId: any, viewId: string | null, figurePos: number): 
 function FigureImageActions(props: Props) {
   const { stateId, viewId } = props;
   const dispatch = useDispatch<Dispatch>();
-  const classes = useStyles();
   const editorState = useSelector((state: State) => getEditorState(state, stateId)?.state);
   const selection = editorState?.selection;
   const parent =
@@ -130,7 +119,7 @@ function FigureImageActions(props: Props) {
   const onDelete = () => dispatch(deleteNode(stateId, viewId, { node: figure, pos }));
 
   return (
-    <Grid container alignItems="center" justifyContent="center" className={classes.root}>
+    <div className="flex items-center justify-center w-fit text-xl flex-nowrap">
       {hasAlign && (
         <>
           <MenuIcon kind="left" active={align === 'left'} onClick={onAlign('left')} />
@@ -149,7 +138,7 @@ function FigureImageActions(props: Props) {
       {figcaption && <MenuIcon kind="numbered" active={numbered} onClick={onNumbered} />}
       <MenuIcon kind="divider" />
       <MenuIcon kind="remove" onClick={onDelete} dangerous />
-    </Grid>
+    </div>
   );
 }
 

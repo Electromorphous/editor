@@ -1,15 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import {
-  Button,
-  createStyles,
-  Divider,
-  IconButton,
-  makeStyles,
-  SvgIcon,
-  Theme,
-  Tooltip,
-} from '@material-ui/core';
+import type { Theme } from '@material-ui/core';
+import { Button, createStyles, IconButton, makeStyles, SvgIcon, Tooltip } from '@material-ui/core';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
@@ -189,6 +181,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     hr: {
+      display: 'inline-block',
       margin: theme.spacing(0, 0.5),
       height: 20,
     },
@@ -215,7 +208,7 @@ function MenuIcon(props: Props) {
 
   const classes = useStyles();
 
-  if (kind === 'divider') return <Divider className={classes.hr} orientation="vertical" />;
+  if (kind === 'divider') return <div className="w-px h-5 bg-slate-700 inline-block" />;
 
   const { help, Icon } = icons[kind];
 

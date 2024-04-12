@@ -1,29 +1,17 @@
 import React from 'react';
-import { makeStyles, createStyles, Grid } from '@material-ui/core';
-import { Node } from 'prosemirror-model';
+import type { Node } from 'prosemirror-model';
 import { nodeNames } from '@curvenote/schema';
 import { findParentNode } from '@curvenote/prosemirror-utils';
 import { useDispatch, useSelector } from 'react-redux';
 import MenuIcon from '../Menu/Icon';
 import { updateNodeAttrs } from '../../store/actions';
 import { getEditorState } from '../../store/selectors';
-import { Dispatch, State } from '../../store';
-import { ActionProps } from './utils';
+import type { Dispatch, State } from '../../store';
+import type { ActionProps } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: 'fit-content',
-      fontSize: 20,
-      flexWrap: 'nowrap',
-    },
-  }),
-);
 
 function EquationActions(props: ActionProps) {
   const { stateId, viewId } = props;
-  const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
   const state = useSelector((s: State) => getEditorState(s, stateId)?.state);
   const parent =
@@ -42,9 +30,9 @@ function EquationActions(props: ActionProps) {
   // Reposition the popper
 
   return (
-    <Grid container alignItems="center" justifyContent="center" className={classes.root}>
+    <div className="flex items-center justify-center w-fit text-xl flex-nowrap">
       <MenuIcon kind="numbered" active={numbered} onClick={onNumbered} />
-    </Grid>
+    </div>
   );
 }
 

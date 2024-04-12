@@ -127,7 +127,7 @@ function LinkBlockActions(props: ActionProps) {
           }}
         />
       </div>
-      <MenuIcon kind="divider" />
+
       <Tooltip title={link.tooltip}>
         <Button
           className={classes.button}
@@ -138,9 +138,9 @@ function LinkBlockActions(props: ActionProps) {
           Edit Link
         </Button>
       </Tooltip>
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="open" onClick={onOpen} />
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="remove" onClick={onDelete ?? undefined} dangerous />
     </Grid>
   );

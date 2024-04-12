@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { Menu, Theme } from '@material-ui/core';
+import type { Theme } from '@material-ui/core';
+import { Menu } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from 'react-redux';
-import { MarkType, NodeType } from 'prosemirror-model';
+import type { MarkType, NodeType } from 'prosemirror-model';
 import { CommandNames } from '../../store/suggestion/commands';
 import { selectors, actions } from '../../store';
-import { Dispatch, State } from '../../store/types';
+import type { Dispatch, State } from '../../store/types';
 import MenuIcon from './Icon';
 import { isEditable } from '../../prosemirror/plugins/editable';
 import MenuAction from './Action';
@@ -177,7 +178,6 @@ function EditorMenu(props: Props) {
       className={`${classes.root} ${standAlone ? classes.center : classes.pad}`}
       wrap="nowrap"
     >
-      {!standAlone && <MenuIcon kind="divider" />}
       <MenuIcon kind="bold" active={active.strong} disabled={off} onClick={clickBold} />
       <MenuIcon kind="italic" active={active.em} disabled={off} onClick={clickItalic} />
       <MenuIcon
@@ -193,7 +193,6 @@ function EditorMenu(props: Props) {
 
       {parents.table && (
         <>
-          <MenuIcon kind="divider" />
           <MenuIcon
             kind="table"
             active={parents.ul}
@@ -213,7 +212,6 @@ function EditorMenu(props: Props) {
         isOpen={isTableMenuOpen}
         command={command}
       />
-      <MenuIcon kind="divider" />
 
       <MenuIcon
         kind="ul"
@@ -227,7 +225,6 @@ function EditorMenu(props: Props) {
         disabled={off || !schema?.nodes.ordered_list}
         onClick={clickOl}
       />
-      <MenuIcon kind="divider" />
       <MenuIcon kind="link" active={active.linked} disabled={off} onClick={clickLink} />
       {nodes.cite && (
         <MenuIcon
@@ -237,7 +234,6 @@ function EditorMenu(props: Props) {
           onClick={toggleBrackets}
         />
       )}
-      <MenuIcon kind="divider" />
       <MenuIcon kind="more" disabled={off} onClick={onOpen} aria-controls="insert-menu" />
       {Boolean(anchorEl) && (
         <Menu

@@ -1,16 +1,6 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import isEqual from 'lodash.isequal';
-// import {
-//   TextField,
-//   makeStyles,
-//   Theme,
-//   createStyles,
-//   Popover,
-//   Paper,
-//   Typography,
-// } from '@material-ui/core';
-// import { Popover } from 'shadcn/components/ui/popover';
 import { schemas } from '@curvenote/schema';
 import type { State, Dispatch } from '../../store/types';
 import { closeAttributeEditor, updateNodeAttrs } from '../../store/actions';
@@ -26,27 +16,9 @@ import { isEditable } from '../../prosemirror/plugins/editable';
 
 const HEIGHT = 300;
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       backgroundColor: '#fff',
-//       padding: theme.spacing(1),
-//       width: 300,
-//       maxHeight: HEIGHT,
-//       overflowY: 'scroll',
-//       overscrollBehavior: 'none',
-//       '& > *': {
-//         margin: theme.spacing(1),
-//         width: 'calc(100% - 15px)',
-//       },
-//     },
-//   }),
-// );
-
 export const NODES_WITH_ATTRS = new Set(Object.keys(schemas.reactiveNodes));
 
 function Attributes() {
-  // const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
 
   const stateKey = useSelector((state: State) => getEditorUI(state).stateId);

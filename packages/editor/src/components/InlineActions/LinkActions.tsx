@@ -111,7 +111,7 @@ function LinkActions(props: ActionProps) {
           }}
         />
       </div>
-      <MenuIcon kind="divider" />
+
       <Tooltip title={link.tooltip}>
         <Button
           aria-label="edit link inline"
@@ -125,9 +125,9 @@ function LinkActions(props: ActionProps) {
           Edit Link
         </Button>
       </Tooltip>
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="open" onClick={onOpen} />
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="unlink" onClick={onDelete ?? undefined} dangerous />
     </Grid>
   );

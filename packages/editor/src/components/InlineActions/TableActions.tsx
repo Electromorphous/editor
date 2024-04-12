@@ -92,13 +92,13 @@ function TableActions(props: ActionProps) {
       <MenuIcon kind="rowBelow" onClick={() => command(CommandNames.add_row_after)} />
       <MenuIcon kind="colLeft" onClick={() => command(CommandNames.add_column_before)} />
       <MenuIcon kind="colRight" onClick={() => command(CommandNames.add_column_after)} />
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="rowDelete" onClick={() => command(CommandNames.delete_row)} dangerous />
       <MenuIcon kind="colDelete" onClick={() => command(CommandNames.delete_column)} dangerous />
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="caption" active={Boolean(figcaption)} onClick={onCaption} />
       {figcaption && <MenuIcon kind="numbered" active={numbered} onClick={onNumbered} />}
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="remove" onClick={onDelete} dangerous />
     </Grid>
   );

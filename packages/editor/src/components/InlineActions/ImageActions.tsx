@@ -52,7 +52,7 @@ function ImageActions(props: Props) {
     <Grid container alignItems="center" justifyContent="center" className={classes.root}>
       <SelectWidth width={width} onWidth={onWidth} />
       <MenuIcon kind="caption" onClick={onCaption} />
-      <MenuIcon kind="divider" />
+
       <MenuIcon kind="remove" onClick={onDelete} dangerous />
     </Grid>
   );

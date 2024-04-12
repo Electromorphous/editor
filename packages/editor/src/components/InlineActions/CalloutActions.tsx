@@ -1,5 +1,4 @@
 import React from 'react';
-// import { makeStyles, createStyles, Grid } from '@material-ui/core';
 import { findParentNode } from '@curvenote/prosemirror-utils';
 import type { Node } from 'prosemirror-model';
 import { nodeNames } from '@curvenote/schema';
@@ -11,22 +10,8 @@ import type { Dispatch, State } from '../../store';
 import type { ActionProps } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
 
-// const useStyles = makeStyles(() =>
-// createStyles({
-//     root: {
-//       width: 'fit-content',
-//       fontSize: 20,
-//       flexWrap: 'nowrap',
-//     },
-//     popover: {
-//       overflow: 'visible',
-//     },
-//   }),
-// );
-
 function CalloutActions(props: ActionProps) {
   const { stateId, viewId } = props;
-  // const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
 
   const selection = useSelector((state: State) => getEditorState(state, stateId)?.state?.selection);

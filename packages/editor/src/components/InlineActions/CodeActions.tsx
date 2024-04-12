@@ -1,20 +1,11 @@
 import React from 'react';
-// import {
-//   FormControl,
-//   Select as MuiSelect,
-//   MenuItem,
-//   styled,
-//   makeStyles,
-//   createStyles,
-//   Grid,
-// } from '@material-ui/core';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../shadcn/components/ui/select';
+} from '../../shadcn/components/select';
 import { findParentNode, replaceParentNodeOfType } from '@curvenote/prosemirror-utils';
 import type { Node, NodeType } from 'prosemirror-model';
 import type { Nodes } from '@curvenote/schema';
@@ -36,35 +27,7 @@ import type { Dispatch, State } from '../../store';
 import type { ActionProps } from './utils';
 import { getFigure } from './utils';
 import { getNodeFromSelection } from '../../store/ui/utils';
-
-// const useStyles = makeStyles(() =>
-//   createStyles({
-//     root: {
-//       width: 'fit-content',
-//       paddingLeft: '0.5rem',
-//       fontSize: 20,
-//       flexWrap: 'nowrap',
-//     },
-//     menulist: {
-//       maxHeight: '15rem',
-//     },
-//     dropdownContainer: {
-//       width: 100,
-//     },
-//     popover: {
-//       overflow: 'visible',
-//     },
-//   }),
-// );
-
-// const Select = styled(MuiSelect)(() => ({
-//   root: {
-//     zIndex: 1302,
-//   },
-//   '& .MuiSelect-select': {
-//     padding: 2,
-//   },
-// })) as any;
+import { SelectGroup, SelectLabel } from '@radix-ui/react-select';
 
 function LanguageSeletionDropdown({
   value,
@@ -73,18 +36,20 @@ function LanguageSeletionDropdown({
   onChanged: (lang: string) => void;
   value: LanguageNames;
 }) {
-  // const classes = useStyles();
   return (
     <Select defaultValue={SUPPORTED_LANGUAGES[0].name}>
       <SelectTrigger>
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>
-        {SUPPORTED_LANGUAGES.map(({ name, label }) => (
-          <SelectItem key={name} value={name} onClick={() => onChanged(name)}>
-            {label}
-          </SelectItem>
-        ))}
+        <SelectGroup>
+          <SelectLabel>Languages</SelectLabel>
+          {SUPPORTED_LANGUAGES.map(({ name, label }) => (
+            <SelectItem key={name} value={name} onClick={() => onChanged(name)}>
+              {label}
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );
@@ -92,7 +57,6 @@ function LanguageSeletionDropdown({
 
 function CodeActions(props: ActionProps) {
   const { stateId, viewId } = props;
-  // const classes = useStyles();
   const dispatch = useDispatch<Dispatch>();
   const editorState = useSelector((state: State) => getEditorState(state, stateId)?.state);
   const { figure, figcaption } = getFigure(editorState);

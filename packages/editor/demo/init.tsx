@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { createStore as createReduxStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-// import { Button, createTheme } from '@material-ui/core';
 import { toHTML, toMarkdown, toTex, ReferenceKind, process, toText } from '@curvenote/schema';
 import { Sidenote, AnchorBase } from 'sidenotes';
 import { Fragment } from 'prosemirror-model';
 import type { Store, LinkResult } from '../src';
-import { actions, Editor, EditorMenu, setup, Suggestions, Attributes, InlineActions } from '../src';
+import { actions, Editor, EditorMenu, setup, Attributes, InlineActions } from '../src';
 import rootReducer from './reducers';
 import middleware from './middleware';
 import 'codemirror/lib/codemirror.css';
 import '../styles/index.scss';
 import 'sidenotes/dist/sidenotes.css';
 import type { Options } from '../src/connect';
-import SuggestionSwitch from '../src/components/Suggestion/Switch';
 import InlineActionSwitch from '../src/components/InlineActions/Switch';
 
 declare global {
